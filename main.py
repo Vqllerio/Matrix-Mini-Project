@@ -68,30 +68,20 @@ def DET(A):
 def INV(A):
     det = DET(A)
     if det == 0:
-        return "The matrix is not invertible."
-
-    # Calculate the cofactor matrix
+        return "You cannot Invers this matrix"
     cofactors = []
     for i in range(4):
         cofactor_row = []
         for j in range(4):
-            # Get the minor matrix excluding row i and column j
             minor = [
                 [A[x][y] for y in range(4) if y != j]
-                for x in range(4) if x != i
-            ]
+                for x in range(4) if x != i]
             cofactor = (-1) ** (i + j) * Minor(minor)
             cofactor_row.append(cofactor)
         cofactors.append(cofactor_row)
-
-    # Transpose the cofactor matrix to get the adjoint
     adjoint = [[cofactors[j][i] for j in range(4)] for i in range(4)]
-
-    # Divide each element of the adjoint matrix by the determinant
     inverse = [[adjoint[i][j] / det for j in range(4)] for i in range(4)]
     return inverse
-
-# Example usage of the new INV function:
 
 print("1 = Addition\n2 = Subtraction\n3 = Multiplication\n4 = Deteminant\n5 = Invers")
 userinput = int(input("Enter the operation that you want to do: "))
